@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 400000}
   - 114: {fileID: 11400000}
   m_Layer: 0
-  m_Name: gun
+  m_Name: Gun
   m_TagString: gun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -97,7 +97,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc73ae15d9982704d8ff29541eb71e00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullets: 0
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1
