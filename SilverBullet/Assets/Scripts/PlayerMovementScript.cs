@@ -4,7 +4,9 @@ using System.Collections;
 public class PlayerMovementScript : MonoBehaviour
 {
 
-	public float speed = 4.0f;
+	public float speed = 6.0f;
+	public float jumpSpeed = 8.0f;
+	public float gravity = 20.0f;
 	CharacterController cc;
 
 	// Use this for initialization
@@ -16,11 +18,16 @@ public class PlayerMovementScript : MonoBehaviour
 	// Update is called once per frame
 	void FixedUpdate ()
 	{
-		Vector3 targetDirection = Camera.main.transform.forward;
-		targetDirection *= Input.GetAxis("Vertical");
-		targetDirection += Camera.main.transform.right * Input.GetAxis("Horizontal");
+		Vector3 targetDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+		targetDirection = transform.TransformDirection(targetDirection);
 		targetDirection.Normalize();
-		targetDirection *= Time.deltaTime;
-		cc.Move(targetDirection * speed);
+		targetDirection *= speed;
+		if(cc.isGrounded && Input.GetButtonDown("Jump"))
+		{
+			targetDirection.y = jumpSpeed;
+		}
+		targetDirection.y -= gravity * Time.fixedDeltaTime;
+
+		cc.Move(targetDirection * Time.fixedDeltaTime);
 	}
 }
