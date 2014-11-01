@@ -16,7 +16,9 @@ public class PlayerMovementScript : MonoBehaviour
 	// Update is called once per frame
 	void FixedUpdate ()
 	{
-		Vector3 targetDirection = new Vector3(Input.GetAxis("Horizontal"), 0, -Input.GetAxis("Vertical"));
+		Vector3 targetDirection = Camera.main.transform.forward;
+		targetDirection *= Input.GetAxis("Vertical");
+		targetDirection += Camera.main.transform.right * Input.GetAxis("Horizontal");
 		targetDirection.Normalize();
 		targetDirection *= Time.deltaTime;
 		cc.Move(targetDirection * speed);
