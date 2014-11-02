@@ -12,6 +12,7 @@ public class WerewolfPatrol : WerewolfState {
     {
         wai.GetNMA().SetDestination(wai.patrolPoints[currentPatrolPoint].position);
         wai.GetNMA().speed = 4;
+        wai.GetNMA().stoppingDistance = 1;
     }
 
     public override void Update()
@@ -25,7 +26,7 @@ public class WerewolfPatrol : WerewolfState {
             sm.ChangeState(new WerewolfSight(sm, wai));
         }
         
-        if(Vector3.Distance(wai.transform.position, wai.patrolPoints[currentPatrolPoint].position) < 1)
+        if(Vector3.Distance(wai.transform.position, wai.patrolPoints[currentPatrolPoint].position) < 3)
         {
             if(currentPatrolPoint < wai.patrolPoints.Length-1)
             {

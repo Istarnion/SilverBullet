@@ -6,6 +6,7 @@ public class Master : MonoBehaviour {
     public GUITexture fader;
     public float fadeSpeed = .2f;
     public GUIText hudText;
+    bool ended = false;
 
     void Awake()
     {
@@ -23,7 +24,7 @@ public class Master : MonoBehaviour {
         fader.pixelInset = new Rect(0f, 0f, Screen.width, Screen.height);
         fader.color = Color.clear;
         hudText.color = Color.clear;
-        while(fader.color.a <= 0.95)
+        while(fader.color.a <= 0.9)
         {
             hudText.color = Color.Lerp(hudText.color, Color.white, 0.1f);
             fader.color = Color.Lerp(fader.color, Color.black, 0.005f);
@@ -31,13 +32,15 @@ public class Master : MonoBehaviour {
         }
         hudText.color = Color.white;
         fader.color = Color.black;
+
+        Application.LoadLevel("Menu");
     }
 
     public IEnumerator FadeIn()
     {
         fader.pixelInset = new Rect(0f, 0f, Screen.width, Screen.height);
         fader.color = Color.black;
-        while (fader.color.a >= 0.05)
+        while (fader.color.a >= 0.1)
         {
             fader.color = Color.Lerp(fader.color, Color.clear, fadeSpeed);
             yield return new WaitForSeconds(0.016f);
@@ -47,25 +50,30 @@ public class Master : MonoBehaviour {
 
     public void EndGame(bool victory)
     {
-        GameObject player = GameObject.FindWithTag("Player");
-        foreach(MonoBehaviour mb in player.GetComponents<MonoBehaviour>())
+        if (!ended)
         {
-            mb.enabled = false;
-        }
-        foreach (MonoBehaviour mb in player.GetComponentsInChildren<MonoBehaviour>())
-        {
-            mb.enabled = false;
-        }
-        Screen.lockCursor = false;
-        if(victory)
-        {
-            hudText.text = "You survived!";
-            StartCoroutine(FadeOut());
-        }
-        else
-        {
-            hudText.text = "You are delicious!";
-            StartCoroutine(FadeOut());
+            ended = true;
+
+            GameObject player = GameObject.FindWithTag("Player");
+            foreach (MonoBehaviour mb in player.GetComponents<MonoBehaviour>())
+            {
+                mb.enabled = false;
+            }
+            foreach (MonoBehaviour mb in player.GetComponentsInChildren<MonoBehaviour>())
+            {
+                mb.enabled = false;
+            }
+            Screen.lockCursor = false;
+            if (victory)
+            {
+                hudText.text = "You survived!";
+                StartCoroutine(FadeOut());
+            }
+            else
+            {
+                hudText.text = "You are delicious!";
+                StartCoroutine(FadeOut());
+            }
         }
     }
 }

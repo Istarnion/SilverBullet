@@ -24,11 +24,13 @@ public abstract class WerewolfState {
     protected bool CheckSight()
     {
         RaycastHit hitInfo;
-        Debug.DrawRay(wai.transform.position, (wai.GetPlayer().transform.position - wai.transform.position));
-        Vector3 playerPos = wai.GetPlayer().transform.position;
-        playerPos.y += 1; // To compensate for the players position being at ground level. We want to aim for the center of the player instead.
-        Vector3 dir = (playerPos - wai.transform.position);
-        if (Physics.Raycast(wai.transform.position, dir, out hitInfo, Mathf.Infinity))
+        Vector3 origin = wai.transform.position;
+        origin.y += 1;
+        Vector3 playerPos = Camera.main.transform.position;
+        Vector3 dir = (playerPos - origin);
+        origin += (dir / dir.magnitude)*2;
+        Debug.DrawRay(origin, dir);
+        if (Physics.Raycast(origin, dir, out hitInfo, Mathf.Infinity))
         {
             if (hitInfo.collider.tag == "Player")
             {

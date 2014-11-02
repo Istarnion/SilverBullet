@@ -33,7 +33,7 @@ public class Shoot : MonoBehaviour {
 		{
             if(hitInfo.collider.tag == "werewolf")
             {
-                Destroy(hitInfo.collider.gameObject);
+                hitInfo.collider.gameObject.GetComponent<werewolfAnim>().Die();
                 pm.BulletSpent(true);
             }
             else
