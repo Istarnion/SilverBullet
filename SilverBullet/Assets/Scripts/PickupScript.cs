@@ -5,13 +5,13 @@ public class PickupScript : MonoBehaviour
 {
 
 	public GameObject obj;
-    public GUIText guiText;
+    public GUIText hudText;
 
 	void OnTriggerStay(Collider c)
 	{
         if(c.tag == "gunPickup")
         {
-            guiText.text = "Press 'E' to pick up gun";
+            hudText.text = "Press 'E' to pick up gun";
             if (Input.GetButtonDown("Activate"))
             {
                 Pickup(true);
@@ -20,7 +20,7 @@ public class PickupScript : MonoBehaviour
         }
         else if (c.tag == "bulletPickup")
         {
-            guiText.text = "Press 'E' to pick up silver bullet";
+            hudText.text = "Press 'E' to pick up silver bullet";
             if (Input.GetButtonDown("Activate"))
             {
                 Pickup(false);
@@ -29,7 +29,7 @@ public class PickupScript : MonoBehaviour
         }
         else
         {
-            guiText.text = "";
+            hudText.text = "";
         }
 	}
 
@@ -37,11 +37,11 @@ public class PickupScript : MonoBehaviour
     {
         if (c.tag == "gunPickup")
         {
-            guiText.text = "Press 'E' to pick up gun";
+            hudText.text = "Press 'E' to pick up gun";
         }
         else if (c.tag == "bulletPickup")
         {
-            guiText.text = "Press 'E' to pick up silver bullet";
+            hudText.text = "Press 'E' to pick up silver bullet";
         }
     }
 
@@ -49,11 +49,11 @@ public class PickupScript : MonoBehaviour
     {
         if (c.tag == "gunPickup")
         {
-            guiText.text = "";
+            hudText.text = "";
         }
         else if (c.tag == "bulletPickup")
         {
-            guiText.text = "";
+            hudText.text = "";
         }
     }
 	
