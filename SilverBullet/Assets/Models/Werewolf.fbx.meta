@@ -261,7 +261,7 @@ ModelImporter:
       takeName: ArmatureAction_002
       firstFrame: 0
       lastFrame: 40
-      wrapMode: 0
+      wrapMode: 2
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
@@ -345,7 +345,7 @@ ModelImporter:
       takeName: ArmatureAction_002
       firstFrame: 60
       lastFrame: 80
-      wrapMode: 0
+      wrapMode: 2
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
@@ -429,7 +429,7 @@ ModelImporter:
       takeName: ArmatureAction_002
       firstFrame: 120
       lastFrame: 150
-      wrapMode: 0
+      wrapMode: 2
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
