@@ -12,7 +12,7 @@ public class PickupScript : MonoBehaviour
         if(c.tag == "gunPickup")
         {
             hudText.text = "Press 'E' to pick up gun";
-            if (Input.GetButtonDown("Activate"))
+            if (Input.GetButton("Activate"))
             {
                 Pickup(true);
                 Destroy(c.gameObject);
@@ -21,7 +21,7 @@ public class PickupScript : MonoBehaviour
         else if (c.tag == "bulletPickup")
         {
             hudText.text = "Press 'E' to pick up silver bullet";
-            if (Input.GetButtonDown("Activate"))
+            if (Input.GetButton("Activate"))
             {
                 Pickup(false);
                 Destroy(c.gameObject);
@@ -29,7 +29,7 @@ public class PickupScript : MonoBehaviour
         }
         else
         {
-            hudText.text = "";
+            //hudText.text = "";
         }
 	}
 
@@ -59,6 +59,7 @@ public class PickupScript : MonoBehaviour
 	
 	private void Pickup(bool gun)
 	{
+        hudText.text = "";
 		if(gun)
 		{
 			GameObject pickupable = Instantiate(obj, Vector3.zero, Quaternion.identity) as GameObject;
