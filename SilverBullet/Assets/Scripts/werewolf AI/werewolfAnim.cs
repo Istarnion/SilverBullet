@@ -22,6 +22,7 @@ public class werewolfAnim : MonoBehaviour {
 	void Start () {
         nma = GetComponent<NavMeshAgent>();
         player = GameObject.FindWithTag("Player").transform;
+        anim["walk"].speed = 2.5f;
 	}
 	
     public void Die()
